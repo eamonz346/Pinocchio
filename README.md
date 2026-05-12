@@ -49,5 +49,5 @@ Pinocchio 是一个以 DeepSeek 模型为核心的 AI 工作台。
 
 ------
 
-教我点技术：https://t.me/username
+教我点技术：https://t.melmi_zephyr
 <img width="2560" height="1440" alt="image" src="https://github.com/user-attachments/assets/42bce100-eff2-462a-9658-fd2897b200c6" />
