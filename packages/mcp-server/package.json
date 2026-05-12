@@ -1,0 +1,24 @@
+{
+  "name": "@pinocchio/mcp-server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "pinocchio-mcp": "./src/server.ts"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json --emitDeclarationOnly",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "start": "tsx src/server.ts"
+  },
+  "dependencies": {
+    "@pinocchio/core": "workspace:*",
+    "@modelcontextprotocol/sdk": "1.29.0",
+    "tsx": "4.21.0",
+    "zod": "4.4.2"
+  },
+  "devDependencies": {
+    "@types/node": "25.6.0",
+    "typescript": "6.0.3"
+  }
+}

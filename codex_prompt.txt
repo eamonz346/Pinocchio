@@ -1,0 +1,20 @@
+Fix 5 edge-case bugs in Intent Router and Emotion Detector.
+
+Read these two files:
+- packages/core/src/core/intentRouter.ts
+- packages/core/src/core/emotionDetector.ts
+
+Fix all 5 issues:
+
+1. webSearch false positive: '今天天气不错' triggers webSearch because '今天' is in the regex. Fix the exclusion on the webSearch line - add exclusion for 今天 when followed by casual/weather words like 天气, 怎么样, 如何, 好吗.
+
+2. multiAgent over-trigger: '帮我验证一下这个函数的返回值' triggers multiAgent because coding=true AND the word 验证 matches the trigger condition. Fix: multiAgent should require stronger signals (多方案, 对比, 权衡, 多角色, 跨领域), not just 验证 when only coding is present.
+
+3. EmotionDetector missing pattern: '我真的快疯了' is NOT detected as frustrated. Add 疯了 and 疯掉 to the frustrated regex in emotionDetector.ts.
+
+4. coding false positive on onboarding: '你好我是实习生，想了解一下项目架构，代码评审的流程是怎样的' triggers coding because 代码 matches. Fix: when teaching=true AND no code block markers (triple backticks) in text, suppress coding.
+
+5. English negation bypass: 'don't use Canvas, just chat' is not caught by the noCanvas regex. Add pattern: don.{0,8}(use|put).{0,8}canvas or no canvas, case insensitive.
+
+After fixing ALL files, verify with: npx vitest run packages/core/src/tests/intentRouterEdge.test.ts
+All 53 tests must pass.
